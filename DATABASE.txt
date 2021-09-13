@@ -1,0 +1,16 @@
+import mysql.connector
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="Nandhini01$$",
+    database="nandhini"
+    )
+mycursor = conn.cursor()
+mycursor.execute("CREATE TABLE movies(movie_name varchar(50),actor_name varchar(50),actress_name varchar(50),director_name varchar(50),year_of_release int)")
+mycursor.execute("INSERT INTO movies(movie_name,actor_name,actress_name,director_name,year_of_release)values(%s,%s,%s,%s,%s)",("paiyaa","karthi","tamanna","lingusammi",2010),("three","dhanush","shruthi","aishwarya",2016),("lee","sibi","shreya","murugados",2012))
+conn.commit()
+
+mycursor.execute("SELECT * from movies where actor_name = 'dhanush'")
+for x in mycursor:
+    print(x)
+    
